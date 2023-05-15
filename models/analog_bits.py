@@ -1,15 +1,11 @@
-import torch.nn as nn
+import tensorflow as tf
 
 
-class AnalogBits(nn.Module):
-    """Predict x0 with xt and t"""
-
-    def __init__(self, n_features):
-        super(AnalogBits, self).__init__()
-        self.layer1 = nn.Linear(n_features, 32)
-        self.layer2 = nn.Linear(32, n_features)
-
-    def forward(self, x, t):
-        x = self.layer1(x)  # Just an example, don't wotk
-        x = self.layer2(x)
-        return x
+def get_model(input_shape : tf.TensorShape):
+    """Return tensorflow model"""
+    model = tf.keras.Sequential([
+        tf.keras.layers.Dense(10, activation=tf.nn.relu, input_shape=input_shape),
+        tf.keras.layers.Dense(10, activation=tf.nn.relu),
+        tf.keras.layers.Dense(input_shape[-1])
+    ])
+    return model
