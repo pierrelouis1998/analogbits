@@ -372,6 +372,7 @@ def get_x0_clipping_function(x0_clip):
 
 
 def get_x0_from_eps(xt, gamma, noise_pred):
+    # print("xt :", xt.shape, 'gamma:', gamma.shape, 'noise_pred :', noise_pred.shape)
     data_pred = 1. / sqrt(gamma) * (xt - sqrt(1. - gamma) * noise_pred)
     return data_pred
 
